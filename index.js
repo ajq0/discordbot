@@ -15,6 +15,8 @@
     const bot = new Discord.Client()
 
     bot.on('ready', ()=>{
+    
+      server = bot.guilds.first()
 
       let activeVoiceChannels = bot.channels.filter(e=>e.type === 'voice' && e.members.array().length > 0)
       console.log(activeVoiceChannels)
