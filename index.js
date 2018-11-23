@@ -1,6 +1,16 @@
-const playFile = require('./playFile.js');
+const playSong = require('./playSong');
 (function(){
 
+  process.on('uncaughtException', (err) => {
+    fs.writeSync(1, `Caught exception: ${err}\n`);
+  });
+  
+  process.on('unhandledRejection', (reason, p) => {
+      console.log("Unhandled Rejection at: Promise ", p, " reason: ", reason);
+      // application specific logging, throwing an error, or other logic here
+  });
+  
+  
   const Discord = require('discord.js')
   const fs = require('fs-extra')
   const _ = require('lodash')
@@ -10,8 +20,6 @@ const playFile = require('./playFile.js');
   fs.readJson('./auth.json').then( f => {
 
     token = f.token
-
-    console.log(token)
 
     const bot = new Discord.Client()
 
@@ -29,6 +37,7 @@ const playFile = require('./playFile.js');
           //console.log(reciever)
         })
       })*/
+      
     })
 
     bot.on('message', msg =>{
@@ -47,7 +56,8 @@ const playFile = require('./playFile.js');
       if(message=="Playtest")
       {
         senderVoiceChannel = bot.channels.find(e=>e.type === 'voice' && e.members.array().find(e=>e.id == msg.author.id))
-        playFile(senderVoiceChannel)
+        playSong("despacito", senderVoiceChannel);
+        
         bot.on('voiceStateUpdate', update =>{
           if(senderVoiceChannel.members.array().length == 1) {
             senderVoiceChannel.leave()
