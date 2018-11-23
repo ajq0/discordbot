@@ -22,13 +22,13 @@ const playFile = require('./playFile.js');
       let activeVoiceChannels = bot.channels.filter(e=>e.type === 'voice' && e.members.array().length > 0)
       //console.log(activeVoiceChannels)
 
-      let rec = []
+     /* let rec = []
       activeVoiceChannels.tap(c => {
         c.join().then(connection => {
           //const reciever = connection.createReciever()
           //console.log(reciever)
         })
-      })
+      })*/
     })
 
     bot.on('message', msg =>{
@@ -46,7 +46,13 @@ const playFile = require('./playFile.js');
       
       if(message=="Playtest")
       {
-        playFile()
+        senderVoiceChannel = bot.channels.find(e=>e.type === 'voice' && e.members.array().find(e=>e.id == msg.author.id))
+        playFile(senderVoiceChannel)
+        bot.on('voiceStateUpdate', update =>{
+          if(senderVoiceChannel.members.array().length == 1) {
+            senderVoiceChannel.leave()
+          }
+        })
       }
 
 
