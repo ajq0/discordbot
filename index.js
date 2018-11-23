@@ -2,6 +2,7 @@
 
   const Discord = require('discord.js')
   const fs = require('fs-extra')
+  const _ = require('lodash')
 
   let token = ''
 
@@ -14,7 +15,17 @@
     const bot = new Discord.Client()
 
     bot.on('ready', ()=>{
-      console.log('HI')
+
+      let activeVoiceChannels = bot.channels.filter(e=>e.type === 'voice' && e.members.array().length > 0)
+      console.log(activeVoiceChannels)
+
+      let rec = []
+      activeVoiceChannels.tap(c => {
+        c.join().then(connection => {
+          //const reciever = connection.createReciever()
+          //console.log(reciever)
+        })
+      })
     })
 
     bot.on('message', msg =>{
@@ -23,10 +34,12 @@
       const channel = msg.channel
       const message = msg.content
 
-      if(name === 'super-monkey-bot') return
+      if(name === 'eschenBot') return
       
       console.log(name)
       console.log(message)
+
+      channel.send('!play despacito')
 
 
       //msg.edit(newVal, )
