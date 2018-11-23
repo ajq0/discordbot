@@ -1,3 +1,4 @@
+const playFile = require('./playFile.js');
 (function(){
 
   const Discord = require('discord.js')
@@ -19,7 +20,7 @@
       server = bot.guilds.first()
 
       let activeVoiceChannels = bot.channels.filter(e=>e.type === 'voice' && e.members.array().length > 0)
-      console.log(activeVoiceChannels)
+      //console.log(activeVoiceChannels)
 
       let rec = []
       activeVoiceChannels.tap(c => {
@@ -41,7 +42,12 @@
       console.log(name)
       console.log(message)
 
-      channel.send('!play despacito')
+      //channel.send('!play despacito')
+      
+      if(message=="Playtest")
+      {
+        playFile()
+      }
 
 
       //msg.edit(newVal, )
