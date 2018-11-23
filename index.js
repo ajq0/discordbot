@@ -1,4 +1,4 @@
-(aynsc function(){
+(function(){
 
   const Discord = require('discord.js')
   const fs = require('fs-extra')
@@ -24,6 +24,9 @@
       const message = msg.content
 
       if(name === 'super-monkey-bot') return
+      
+      console.log(name)
+      console.log(message)
 
 
       //msg.edit(newVal, )
@@ -39,7 +42,7 @@
         channel.send('thats my jam')
       }else{
         console.log(name)
-      }*/\
+      }*/
 
     })
 
