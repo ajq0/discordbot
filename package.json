@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "bufferutil": "^4.0.0",
+    "chrome-based-voice-recognition-api": "^2.0.3",
     "discord.io": "^2.5.3",
     "discord.js": "^11.3.2",
     "ffmpeg": "0.0.4",
