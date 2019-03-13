@@ -55,6 +55,10 @@ const playSong = require('./playSong');
       
       if(message=="Playtest")
       {
+        if (bot.voiceConnections.array().length >= 1)
+        {
+          console.log("already connected");
+        }
         senderVoiceChannel = bot.channels.find(e=>e.type === 'voice' && e.members.array().find(e=>e.id == msg.author.id))
         playSong("despacito", senderVoiceChannel);
         
