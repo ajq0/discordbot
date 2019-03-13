@@ -1,16 +1,16 @@
 const fs = require('fs-extra');
 //const request = require('request');
-const http = require('http');
+const https = require('https');
 
 module.exports = function(searchTerm, receiver) {
   console.log("Searching for " + searchTerm);
   fs.readJson('./youtubeApiKey.json').then(api => {
     requestUrl = {
-      host: "http://www.googleapis.com",
+      host: "https://www.googleapis.com",
       path: "/youtube/v3/search?q=" + searchTerm + "&maxResults=1&part=snippet&key=" + api.key
     };
     
-    var req = http.get(requestUrl.host + requestUrl.path, function(res) {
+    var req = https.get(requestUrl.host + requestUrl.path, function(res) {
       console.log('STATUS: ' + res.statusCode);
       console.log('HEADERS: ' + JSON.stringify(res.headers));
 

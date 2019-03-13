@@ -1,5 +1,10 @@
 const playSong = require('./playSong');
 (function(){
+  
+  
+  const Discord = require('discord.js')
+  const fs = require('fs-extra')
+  const _ = require('lodash')
 
   process.on('uncaughtException', (err) => {
     fs.writeSync(1, `Caught exception: ${err}\n`);
@@ -9,11 +14,6 @@ const playSong = require('./playSong');
       console.log("Unhandled Rejection at: Promise ", p, " reason: ", reason);
       // application specific logging, throwing an error, or other logic here
   });
-  
-  
-  const Discord = require('discord.js')
-  const fs = require('fs-extra')
-  const _ = require('lodash')
 
   let token = ''
 
